@@ -1,5 +1,5 @@
 .footer {
-    background-color: var(--primary-color);
+    background-color: var(--background-color);
     color: var(--secondary-color);
     display: flex;
     flex-direction: column;
@@ -8,6 +8,7 @@
     position: fixed;
     left: 0;
     bottom: 0;
+    width: 117px;
     height: 100%;
     padding: 20px;
     z-index: 10;
@@ -16,6 +17,8 @@
 .footer .footer-activities {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
 }
 
 .footer .footer-activities img {
@@ -23,7 +26,7 @@
 }
 
 .footer img {
-    max-height: 30px;
+    max-height: 64px;
     max-width: 100%;
 }
 
@@ -31,4 +34,13 @@
     height: auto;
     width: 100%;
     margin-bottom: 30px;
+}
+
+.footer .text-footer {
+    padding-bottom: 60px;
+    /* width: 45px; */
+    writing-mode: vertical-rl;
+    text-align: center;
+    transform: rotate(180deg);
+
 }
