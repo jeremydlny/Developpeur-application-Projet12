@@ -16,7 +16,7 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = 12; // Remplacez par l'ID utilisateur approprié
+        const userId = 12; // Replace with the appropriate user ID
         const userResponse = await getUserMainData(userId);
         const activityResponse = await getUserActivity(userId);
         const sessionsResponse = await getUserAverageSessions(userId);
@@ -28,9 +28,15 @@ const UserProfile = () => {
           day: index + 1,
         }));
 
+        // Ensure sessions have the correct format for the AverageSessionChart
+        const transformedSessions = sessionsResponse.data.sessions.map((session, index) => ({
+          day: index + 1, // Ensure it is correctly numbered
+          sessionLength: session.sessionLength,
+        }));
+
         setUserData(userResponse.data);
         setUserActivity(transformedActivity);
-        setUserSessions(sessionsResponse.data.sessions);
+        setUserSessions(transformedSessions);
         setUserPerformance(performanceResponse.data.data);
         setKind(performanceResponse.data.kind);
       } catch (error) {
@@ -53,14 +59,16 @@ const UserProfile = () => {
         <h1>Bonjour <span>{userData.userInfos.firstName}</span></h1>
         <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </div>
-      <div className="charts-container">
-        <div className="main-chart">
-          <DailyActivityChart data={userActivity} />
-        </div>
-        <div className="sub-charts">
-          <AverageSessionChart data={userSessions} />
-          <IntensityChart data={userPerformance} kind={kind} />
-          <ScoreChart score={userData.todayScore} />
+      <div className="charts-and-data">
+        <div className="charts-container">
+          <div className="main-chart">
+            <DailyActivityChart data={userActivity} />
+          </div>
+          <div className="sub-charts">
+            <AverageSessionChart data={userSessions} />
+            <IntensityChart data={userPerformance} kind={kind} />
+            <ScoreChart score={userData.todayScore || userData.score} /> {/* Ensure compatibility with different data structures */}
+          </div>
         </div>
         <div className="key-data">
           <div className="key-data-item">

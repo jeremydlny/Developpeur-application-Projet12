@@ -1,5 +1,6 @@
 import React from 'react';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, PolarRadiusAxis } from 'recharts';
+import '@/styles/IntensityChart.css';
 
 const IntensityChart = ({ data, kind }) => {
   if (!data || data.length === 0 || !kind) {
@@ -7,17 +8,21 @@ const IntensityChart = ({ data, kind }) => {
   }
 
   const formattedData = data.map(item => ({
-    ...item,
+    value: item.value,
     kind: kind[item.kind]
   }));
 
   return (
-    <RadarChart cx={300} cy={250} outerRadius={150} width={600} height={500} data={formattedData}>
-      <PolarGrid />
-      <PolarAngleAxis dataKey="kind" />
-      <PolarRadiusAxis />
-      <Radar name="Mike" dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-    </RadarChart>
+    <div className="intensity-chart">
+      <ResponsiveContainer width="100%" height={400}>
+        <RadarChart outerRadius={140} data={formattedData}>
+          <PolarGrid gridType="polygon" radialLines={false} />
+          <PolarAngleAxis dataKey="kind" tick={{ fill: '#fff', fontSize: 14 }} />
+          <PolarRadiusAxis angle={30} domain={[0, 250]} tickCount={6} tick={false} />
+          <Radar name="Intensity" dataKey="value" stroke="#ff0101" fill="#ff0101" fillOpacity={0.7} />
+        </RadarChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 

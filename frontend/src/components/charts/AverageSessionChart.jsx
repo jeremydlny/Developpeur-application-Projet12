@@ -1,20 +1,60 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import '@/styles/AverageSessionChart.css';
+
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip">
+        <p>{`${payload[0].value} min`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
 
 const AverageSessionChart = ({ data }) => {
   if (!data || data.length === 0) {
     return <div>Loading...</div>;
   }
 
+  // Transform the days into days of the week
+  const daysOfWeek = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+  const transformedData = data.map((item, index) => ({
+    ...item,
+    day: daysOfWeek[index % 7],
+  }));
+
   return (
-    <LineChart width={600} height={300} data={data}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="day" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Line type="monotone" dataKey="sessionLength" stroke="#8884d8" />
-    </LineChart>
+    <div className="average-session">
+      <h2 className="chart-title">Durée moyenne des sessions</h2>
+      <ResponsiveContainer width="100%" height={300}>
+        <LineChart
+          data={transformedData}
+          margin={{
+            top: 5, right: 0, left: 0, bottom: 5,
+          }}
+        >
+          <defs>
+            <linearGradient id="colorLine" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="white" stopOpacity={0.8}/>
+              <stop offset="95%" stopColor="white" stopOpacity={0}/>
+            </linearGradient>
+          </defs>
+          <XAxis dataKey="day" tick={{ fill: '#fff' }} interval={0} />
+          <Tooltip content={<CustomTooltip />} />
+          <Line 
+            type="monotone" 
+            dataKey="sessionLength" 
+            stroke="url(#colorLine)" 
+            strokeWidth={2} 
+            dot={{ r: 4, strokeWidth: 2 }} 
+            activeDot={{ r: 6 }} 
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 

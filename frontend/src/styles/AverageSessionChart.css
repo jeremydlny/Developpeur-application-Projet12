@@ -1,0 +1,35 @@
+.average-session {
+  background: linear-gradient(180deg, rgba(255,0,0,1) 0%, rgba(255,0,0,0.7) 100%);
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  color: white;
+}
+
+.chart-title {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.custom-tooltip {
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  color: #000;
+  font-weight: bold;
+}
+
+.average-session .recharts-default-tooltip {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: white !important;
+}
+
+.recharts-surface {
+  overflow: visible;
+}
