@@ -21,8 +21,9 @@ const DailyActivityChart = ({ data }) => {
   };
 
   return (
-    <div className="daily-activity-chart">
-      <h2 style={{ color: '#20253A' }}>Activité quotidienne</h2>
+  <div className="daily-activity-chart">
+    <h2 style={{ color: '#20253A', backgroundColor: '#FBFBFB' }}>Activité quotidienne</h2>
+    <div style={{ backgroundColor: '#FBFBFB' }}>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -36,6 +37,7 @@ const DailyActivityChart = ({ data }) => {
         </BarChart>
       </ResponsiveContainer>
     </div>
+  </div>  
   );
 };
 
