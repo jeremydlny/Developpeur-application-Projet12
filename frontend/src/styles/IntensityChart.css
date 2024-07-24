@@ -6,9 +6,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 258px;
+  height: 263px;
+  padding: 75px;
 }
 
 .recharts-wrapper {
   border-radius: 10px;
-  padding: 20px; /* Adding padding to ensure space around the chart */
+  /* padding: 20px; */
 }

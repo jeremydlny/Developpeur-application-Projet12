@@ -9,8 +9,8 @@
   color: #20253A;
   font-family: 'Roboto', sans-serif;
   position: relative; /* Permet le positionnement absolu du label */
-  width: 200px;
-  height: 250px;
+  width: 258px;
+  height: 263px;
 }
 
 .score-title {

@@ -71,23 +71,35 @@ const UserProfile = () => {
           </div>
         </div>
         <div className="key-data">
-          <div className="key-data-item">
+        <div className="key-data-item">
+          <img src={require('@/assets/calories.png')} alt="Calories" />
+          <div>
             <h3>{calorieCount}kCal</h3>
             <p>Calories</p>
           </div>
-          <div className="key-data-item">
+        </div>
+        <div className="key-data-item">
+          <img src={require('@/assets/proteines.png')} alt="Proteins" />
+          <div>
             <h3>{proteinCount}g</h3>
             <p>Protéines</p>
           </div>
-          <div className="key-data-item">
+        </div>
+        <div className="key-data-item">
+          <img src={require('@/assets/glucides.png')} alt="Carbohydrates" />
+          <div>
             <h3>{carbohydrateCount}g</h3>
             <p>Glucides</p>
           </div>
-          <div className="key-data-item">
+        </div>
+        <div className="key-data-item">
+          <img src={require('@/assets/lipides.png')} alt="Lipids" />
+          <div>
             <h3>{lipidCount}g</h3>
             <p>Lipides</p>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -4,6 +4,12 @@
   padding: 20px;
   position: relative;
   color: white;
+  width: 258px; /* Taille fixée du conteneur */
+  height: 263px; /* Taille fixée du conteneur */
+  box-sizing: border-box; /* Assure que padding est inclus dans la taille totale */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .chart-title {

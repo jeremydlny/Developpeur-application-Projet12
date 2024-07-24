@@ -46,9 +46,10 @@
 .key-data {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
-  align-self: stretch; /* Make sure key-data stretches to fill available height */
-  height: 100%; /* Take the full available height */
+  gap: 39px;
+  align-self: stretch;
+  height: 100%;
+  width: 258px;
 }
 
 .key-data-item {
@@ -56,16 +57,28 @@
   padding: 10px;
   border-radius: 5px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.key-data-item h3 {
+.key-data-item img {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+.key-data-item h3,
+.key-data-item p {
   margin: 0;
-  font-size: 1.5rem;
   color: #333;
 }
 
+.key-data-item h3 {
+  font-size: 1.5rem;
+}
+
 .key-data-item p {
-  margin: 0;
   font-size: 1rem;
   color: #666;
 }
