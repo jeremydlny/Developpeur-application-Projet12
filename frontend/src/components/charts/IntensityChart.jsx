@@ -14,10 +14,10 @@ const IntensityChart = ({ data, kind }) => {
 
   return (
     <div className="intensity-chart">
-      <ResponsiveContainer width="100%" height={400}>
-        <RadarChart outerRadius={140} data={formattedData}>
+      <ResponsiveContainer width={258} height={263}>
+        <RadarChart outerRadius={80} data={formattedData}>
           <PolarGrid gridType="polygon" radialLines={false} />
-          <PolarAngleAxis dataKey="kind" tick={{ fill: '#fff', fontSize: 14 }} />
+          <PolarAngleAxis dataKey="kind" tick={{ fill: '#fff', fontSize: 12 }} />
           <PolarRadiusAxis angle={30} domain={[0, 250]} tickCount={6} tick={false} />
           <Radar name="Intensity" dataKey="value" stroke="#ff0101" fill="#ff0101" fillOpacity={0.7} />
         </RadarChart>
