@@ -13,7 +13,7 @@ const api = axios.create({
  * Retrieves the user main data from the server.
  * @returns {Promise<Object>} A promise that resolves to the user main data.
  */
-export const getUserMainData = async (userId = 12) => {
+export const getUserMainData = async (userId) => {
   const response = await api.get(`/user/${userId}`);
   return response.data;
 }
@@ -22,7 +22,7 @@ export const getUserMainData = async (userId = 12) => {
  * Retrieves the user activity from the server.
  * @returns {Promise<Object>} A promise that resolves to the user activity.
  */
-export const getUserActivity = async (userId = 12) => {
+export const getUserActivity = async (userId) => {
   const response = await api.get(`/user/${userId}/activity`);
   return response.data;
 }
@@ -31,7 +31,7 @@ export const getUserActivity = async (userId = 12) => {
  * Retrieves the user average sessions from the server.
  * @returns {Promise<Object>} A promise that resolves to the user average sessions.
  */
-export const getUserAverageSessions = async (userId = 12) => {
+export const getUserAverageSessions = async (userId) => {
   const response = await api.get(`/user/${userId}/average-sessions`);
   return response.data;
 }
@@ -40,7 +40,7 @@ export const getUserAverageSessions = async (userId = 12) => {
  * Retrieves the user performance from the server.
  * @returns {Promise<Object>} A promise that resolves to the user performance.
  */
-export const getUserPerformance = async (userId = 12) => {
+export const getUserPerformance = async (userId) => {
   const response = await api.get(`/user/${userId}/performance`);
   return response.data;
 }

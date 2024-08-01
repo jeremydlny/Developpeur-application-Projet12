@@ -12,7 +12,7 @@ const ScoreChart = ({ score }) => {
     { name: 'Rest', value: 100 - score * 100 }
   ];
 
-  const COLORS = ['#ff0101', '#FBFBFB'];
+  const COLORS = ['#FF0000', '#FBFBFB'];
 
   return (
     <div className="score-chart">
@@ -29,9 +29,14 @@ const ScoreChart = ({ score }) => {
             endAngle={450}
             dataKey="value"
             paddingAngle={5}
+            fill="#FFFFFF"
           >
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+                cornerRadius={10}
+              />
             ))}
           </Pie>
         </PieChart>

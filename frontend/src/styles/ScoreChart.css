@@ -8,7 +8,7 @@
   justify-content: center;
   color: #20253A;
   font-family: 'Roboto', sans-serif;
-  position: relative; /* Permet le positionnement absolu du label */
+  position: relative;
   width: 258px;
   height: 263px;
 }
@@ -16,6 +16,7 @@
 .score-title {
   font-size: 18px;
   margin-bottom: 10px;
+  color: #20253A;
 }
 
 .score-label {
@@ -23,14 +24,26 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
+  text-align: left;
 }
 
 .score-value {
   font-size: 26px;
   font-weight: bold;
+  color: #20253A;
+  position: absolute;
+  top: -10px;
+  left: -20px;
 }
 
 .score-text {
   font-size: 14px;
+  color: #74798C;
+  position: absolute;
+  top: 20px;
+  left: -20px;
+}
+
+.recharts-pie .recharts-pie-sector {
+  border-radius: 10px; /* Ensures rounded corners */
 }
