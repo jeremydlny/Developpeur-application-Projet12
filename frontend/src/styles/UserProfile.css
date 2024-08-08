@@ -19,7 +19,8 @@
 .user-info img {
   margin-left: 10px;
   cursor: pointer;
-  width: 4%;
+  width: 30px; /* Taille réduite de l'image */
+  height: 30px; /* Taille réduite de l'image */
 }
 
 .user-info p {
@@ -28,12 +29,19 @@
 
 .user-info h1 span {
   color: red;
+  margin-left: 10px;
+}
+
+.dropdown-container {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .dropdown {
   position: absolute;
-  top: 60px;
-  left: 272px;
+  top: 30px;
+  left: 0;
   background: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;

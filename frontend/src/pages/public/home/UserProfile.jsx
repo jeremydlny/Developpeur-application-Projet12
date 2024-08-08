@@ -63,13 +63,18 @@ const UserProfile = () => {
   return (
     <div className="user-profile">
       <div className="user-info">
-        <h1>Bonjour <span>{userData.userInfos.firstName}</span> <img src={arrow} alt="Dropdown" onClick={() => setIsDropdownOpen(!isDropdownOpen)} /></h1>
-        {isDropdownOpen && (
-          <div className="dropdown">
-            <p onClick={() => handleUserChange(12)}>Karl</p>
-            <p onClick={() => handleUserChange(18)}>Cecilia</p>
+        <h1>
+          Bonjour <span>{userData.userInfos.firstName}</span>
+          <div className="dropdown-container">
+            <img src={arrow} alt="Dropdown" onClick={() => setIsDropdownOpen(!isDropdownOpen)} />
+            {isDropdownOpen && (
+              <div className="dropdown">
+                <p onClick={() => handleUserChange(12)}>Karl</p>
+                <p onClick={() => handleUserChange(18)}>Cecilia</p>
+              </div>
+            )}
           </div>
-        )}
+        </h1>
         <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </div>
       <div className="charts-and-data">
