@@ -5,7 +5,8 @@ import IntensityChart from '@/components/charts/IntensityChart';
 import ScoreChart from '@/components/charts/ScoreChart';
 import arrow from '@/assets/arrow.png';
 import '@/styles/UserProfile.css';
-import { getUserMainData, getUserActivity, getUserAverageSessions, getUserPerformance } from '@/api/api';
+import { getUserMainData, getUserActivity, getUserAverageSessions, getUserPerformance } from '@/_service/api-service';
+import { getUserMainDataMock, getUserActivityMock, getUserAverageSessionsMock, getUserPerformanceMock } from '@/_service/mock-service';
 
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
@@ -15,14 +16,26 @@ const UserProfile = () => {
   const [kind, setKind] = useState({});
   const [selectedUserId, setSelectedUserId] = useState(12); // Default to user ID 12
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [useMockData, setUseMockData] = useState(true); // Toggle between API and Mock
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userResponse = await getUserMainData(selectedUserId);
-        const activityResponse = await getUserActivity(selectedUserId);
-        const sessionsResponse = await getUserAverageSessions(selectedUserId);
-        const performanceResponse = await getUserPerformance(selectedUserId);
+        let userResponse, activityResponse, sessionsResponse, performanceResponse;
+
+        if (useMockData) {
+          userResponse = await getUserMainDataMock(selectedUserId);
+          activityResponse = await getUserActivityMock(selectedUserId);
+          sessionsResponse = await getUserAverageSessionsMock(selectedUserId);
+          performanceResponse = await getUserPerformanceMock(selectedUserId);
+
+        } else {
+          userResponse = await getUserMainData(selectedUserId);
+          activityResponse = await getUserActivity(selectedUserId);
+          sessionsResponse = await getUserAverageSessions(selectedUserId);
+          performanceResponse = await getUserPerformance(selectedUserId);
+
+        }
 
         // Transform activity dates to numbered days
         const transformedActivity = activityResponse.data.sessions.map((session, index) => ({
@@ -47,11 +60,15 @@ const UserProfile = () => {
     };
 
     fetchData();
-  }, [selectedUserId]); // Fetch data whenever selectedUserId changes
+  }, [selectedUserId, useMockData]); // Fetch data whenever selectedUserId or useMockData changes
 
   const handleUserChange = (userId) => {
     setSelectedUserId(userId);
     setIsDropdownOpen(false); // Close the dropdown after selection
+  };
+
+  const toggleMockData = (useMock) => {
+    setUseMockData(useMock);
   };
 
   if (!userData) {
@@ -75,6 +92,18 @@ const UserProfile = () => {
             )}
           </div>
         </h1>
+        <div className="api-mock-buttons">
+          <button 
+            className={`toggle-button ${!useMockData ? 'active' : ''}`}
+            onClick={() => toggleMockData(false)}>
+            API
+          </button>
+          <button 
+            className={`toggle-button ${useMockData ? 'active' : ''}`}
+            onClick={() => toggleMockData(true)}>
+            Mock
+          </button>
+        </div>
         <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </div>
       <div className="charts-and-data">
@@ -85,7 +114,7 @@ const UserProfile = () => {
           <div className="sub-charts">
             <AverageSessionChart data={userSessions} />
             <IntensityChart data={userPerformance} kind={kind} />
-            <ScoreChart score={userData.todayScore || userData.score} /> {/* Ensure compatibility with different data structures */}
+            <ScoreChart score={userData.todayScore || userData.score} />
           </div>
         </div>
         <div className="key-data">
