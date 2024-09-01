@@ -1,27 +1,39 @@
+// mock-service.js
+
 import {
-  USER_MAIN_DATA,
-  USER_ACTIVITY,
-  USER_AVERAGE_SESSIONS,
-  USER_PERFORMANCE,
-} from './data';
-  
-  export const getUserMainDataMock = async (userId) => {
-    console.log("Je suis dans le mock service");
-    const user = USER_MAIN_DATA.find(user => user.id === userId);
-    return { data: user };
-  };
-  
-  export const getUserActivityMock = async (userId) => {
-    const activity = USER_ACTIVITY.find(activity => activity.userId === userId);
-    return { data: activity };
-  };
-  
-  export const getUserAverageSessionsMock = async (userId) => {
-    const sessions = USER_AVERAGE_SESSIONS.find(sessions => sessions.userId === userId);
-    return { data: sessions };
-  };
-  
-  export const getUserPerformanceMock = async (userId) => {
-    const performance = USER_PERFORMANCE.find(performance => performance.userId === userId);
-    return { data: performance };
-  };
+  getUserMainData,
+  getUserActivity,
+  getUserAverageSessions,
+  getUserPerformance
+} from './api-service';
+import UserDataFormatter from './UserDataFormatter';
+
+export const getUserDataMock = async (userId) => {
+  console.log("Fetching data from mock service (via API)");
+
+  try {
+    const [userData, activityData, sessionsData, performanceData] = await Promise.all([
+      getUserMainData(userId),
+      getUserActivity(userId),
+      getUserAverageSessions(userId),
+      getUserPerformance(userId)
+    ]);
+
+    const formatter = new UserDataFormatter({
+      userData: userData.data,
+      activityData: activityData.data,
+      sessionsData: sessionsData.data,
+      performanceData: performanceData.data
+    });
+
+    return formatter.formatData();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+export const getUserMainDataMock = getUserMainData;
+export const getUserActivityMock = getUserActivity;
+export const getUserAverageSessionsMock = getUserAverageSessions;
+export const getUserPerformanceMock = getUserPerformance;

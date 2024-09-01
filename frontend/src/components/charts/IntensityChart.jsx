@@ -2,14 +2,11 @@ import React from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, PolarRadiusAxis } from 'recharts';
 import '@/styles/IntensityChart.css';
 
-const IntensityChart = ({ data, kind }) => {
-  if (!data || data.length === 0 || !kind) {
-    return <div>Loading...</div>;
-  }
+const IntensityChart = ({ data }) => {
 
   const formattedData = data.map(item => ({
     value: item.value,
-    kind: kind[item.kind]
+    kind: item.kind,
   }));
 
   return (
