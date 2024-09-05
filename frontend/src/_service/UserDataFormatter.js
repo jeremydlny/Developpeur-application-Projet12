@@ -1,3 +1,5 @@
+// UserDataFormatter.js
+
 class UserDataFormatter {
   constructor(userData, activityData, sessionsData, performanceData) {
     this.userData = userData;
