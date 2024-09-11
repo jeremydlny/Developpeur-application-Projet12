@@ -44,6 +44,7 @@ const UserProfile = () => {
         sessionsResponse = await getUserAverageSessionsMock(selectedUserId);
         performanceResponse = await getUserPerformanceMock(selectedUserId);
       } else {
+        console.log("Fetching data from API service (via api)");
         userResponse = await getUserMainData(selectedUserId);
         activityResponse = await getUserActivity(selectedUserId);
         sessionsResponse = await getUserAverageSessions(selectedUserId);

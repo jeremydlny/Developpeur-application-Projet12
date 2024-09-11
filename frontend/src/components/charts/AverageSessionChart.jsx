@@ -1,3 +1,5 @@
+// AverageSessionChart.jsx
+
 import React from 'react';
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import '@/styles/AverageSessionChart.css';

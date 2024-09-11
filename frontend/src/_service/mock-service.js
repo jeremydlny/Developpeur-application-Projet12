@@ -1,3 +1,5 @@
+// mock-service.js
+
 import USER_MAIN_DATA from '@/data/USER_MAIN_DATA.json';
 import USER_ACTIVITY from '@/data/USER_ACTIVITY.json';
 import USER_AVERAGE_SESSIONS from '@/data/USER_AVERAGE_SESSIONS.json';

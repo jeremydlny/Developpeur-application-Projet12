@@ -1,3 +1,5 @@
+// IntensityChart.jsx 
+
 import React from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, PolarRadiusAxis } from 'recharts';
 import '@/styles/IntensityChart.css';
