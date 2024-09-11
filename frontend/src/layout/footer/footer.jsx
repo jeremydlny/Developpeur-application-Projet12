@@ -1,3 +1,5 @@
+// footer.jsx
+
 import React from 'react';
 import yoga from '@/assets/yoga.png';
 import swimming from '@/assets/swimming.png';

@@ -1,3 +1,5 @@
+// ScoreChart.jsx
+
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import '@/styles/ScoreChart.css';

@@ -1,3 +1,5 @@
+// api-service.js
+
 import axios from 'axios';
 
 /**
@@ -14,7 +16,6 @@ const api = axios.create({
  * @returns {Promise<Object>} A promise that resolves to the user main data.
  */
 export const getUserMainData = async (userId) => {
-  console.log("Je suis dans l'API service");
   const response = await api.get(`/user/${userId}`);
   return response.data;
 }
